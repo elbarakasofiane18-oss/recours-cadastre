@@ -1,0 +1,46 @@
+{
+  "_a_lire_avant_modification": "Ce fichier contient les seuils et references reglementaires utilises par le moteur de regles. Modifiez uniquement les valeurs, pas les cles. Verifiez toujours les montants a jour sur impots.gouv.fr avant de les reporter ici : ce fichier est un point de depart, pas une source officielle.",
+
+  "delai_reponse_administration_mois": 6,
+
+  "annee_reference_evaluation_cadastrale": 1970,
+  "seuil_evaluation_ancienne": 1990,
+
+  "ratio_base_imposition_valeur_locative": {
+    "attendu": 0.5,
+    "tolerance_min": 0.4,
+    "tolerance_max": 0.6,
+    "reference": "Abattement forfaitaire de 50% applique a la valeur locative cadastrale actualisee"
+  },
+
+  "exonerations": [
+    {
+      "id": "age_revenu_modeste",
+      "nom": "Exoneration personnes agees de 75 ans et plus, sous conditions de revenus",
+      "conditions": ["age >= 75 ans au 1er janvier", "revenu fiscal de reference sous le plafond en vigueur"],
+      "a_verifier_sur": "impots.gouv.fr - rubrique exonerations taxe fonciere"
+    },
+    {
+      "id": "travaux_energetiques",
+      "nom": "Exoneration temporaire pour travaux d'economie d'energie",
+      "conditions": ["travaux eligibles realises", "demande deposee dans les delais aupres du centre des impots fonciers"],
+      "a_verifier_sur": "impots.gouv.fr - rubrique exonerations taxe fonciere"
+    },
+    {
+      "id": "exoneration_communale",
+      "nom": "Exonerations locales votees par certaines communes",
+      "conditions": ["variable selon la commune du bien"],
+      "a_verifier_sur": "service urbanisme / impots fonciers de la commune concernee"
+    }
+  ],
+
+  "taux_imposition_indicatif_pour_estimation": {
+    "valeur": 0.40,
+    "avertissement": "Valeur indicative UNIQUEMENT pour ordre de grandeur interne. A remplacer par le taux communal reel (variable par commune du 06) avant toute annonce chiffree a un client."
+  },
+
+  "elements_de_confort_frequents_a_verifier": [
+    "cheminee", "chauffage central", "salle de bain", "bidet", "vide-ordures",
+    "ascenseur", "garage", "piscine", "veranda", "climatisation"
+  ]
+}
