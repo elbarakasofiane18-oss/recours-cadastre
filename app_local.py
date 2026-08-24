@@ -84,12 +84,43 @@ Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distin
 
 st.set_page_config(page_title="Recours Cadastre — 06", layout="wide")
 
+# ---------- Protection par mot de passe ----------
+# Le mot de passe attendu est lu depuis st.secrets (configuré dans Streamlit
+# Community Cloud une fois en ligne) ou, à défaut, depuis une valeur locale
+# ci-dessous pour les tests sur ton ordinateur. Change MOT_DE_PASSE_LOCAL
+# avant de mettre l'outil en ligne.
+MOT_DE_PASSE_LOCAL = "change-moi"
+
+def mot_de_passe_attendu() -> str:
+    try:
+        return st.secrets["APP_PASSWORD"]
+    except Exception:
+        return MOT_DE_PASSE_LOCAL
+
+if "authentifie" not in st.session_state:
+    st.session_state.authentifie = False
+
+if not st.session_state.authentifie:
+    st.title("Recours Cadastre — accès privé")
+    mdp_saisi = st.text_input("Mot de passe", type="password")
+    if st.button("Se connecter"):
+        if mdp_saisi == mot_de_passe_attendu():
+            st.session_state.authentifie = True
+            st.rerun()
+        else:
+            st.error("Mot de passe incorrect.")
+    st.stop()  # bloque tout le reste de la page tant que non authentifié
+
 regles = charger_regles()
 
 st.title("Recours Cadastre — analyse d'un dossier")
 st.caption("06 · Taxe foncière · Application locale — les fichiers restent sur cet ordinateur")
 
 with st.sidebar:
+    if st.button("Se déconnecter"):
+        st.session_state.authentifie = False
+        st.rerun()
+    st.divider()
     st.subheader("Statistiques du cabinet")
     stats = statistiques()
     if "message" in stats:
