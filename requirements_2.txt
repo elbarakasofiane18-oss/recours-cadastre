@@ -1,0 +1,5 @@
+streamlit
+pdfplumber
+reportlab
+pytesseract
+pdf2image
