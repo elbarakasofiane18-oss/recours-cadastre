@@ -3,3 +3,4 @@ pdfplumber
 reportlab
 pytesseract
 pdf2image
+requests
