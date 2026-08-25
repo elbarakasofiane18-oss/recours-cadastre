@@ -16,21 +16,86 @@
   "exonerations": [
     {
       "id": "age_revenu_modeste",
-      "nom": "Exoneration personnes agees de 75 ans et plus, sous conditions de revenus",
-      "conditions": ["age >= 75 ans au 1er janvier", "revenu fiscal de reference sous le plafond en vigueur"],
+      "nom": "Exoneration personnes agees de 75 ans et plus (article 1391 du CGI) et degrevement 65-74 ans",
+      "conditions": ["age >= 75 ans (exoneration totale) ou entre 65 et 74 ans (degrevement 100 euros) au 1er janvier", "revenu fiscal de reference (RFR) de l'annee precedente sous le plafond de l'article 1417-I du CGI"],
+      "source_exclusive": "impots.gouv.fr - page officielle DGFIP 'Mon age me permet-il d'etre exonere de taxe fonciere ?' (https://www.impots.gouv.fr/particulier/questions/mon-age-me-permet-il-detre-exonere-de-taxe-fonciere-0), mise a jour du 20/07/2026, et page 'Exonerations et degrevements' (https://www.impots.gouv.fr/particulier/exonerations-et-degrevements).",
+      "tableau_officiel_2026_metropole": {
+        "1_part": 12679,
+        "1.25_part": 14372,
+        "1.5_part": 16065,
+        "1.75_part": 17758,
+        "2_parts": 19451,
+        "2.25_parts": 21144,
+        "2.5_parts": 22837,
+        "2.75_parts": 24530,
+        "3_parts": 26223,
+        "majoration_par_demi_part_supplementaire": 3386,
+        "majoration_par_quart_part_supplementaire": 1693
+      },
+      "tableau_officiel_2026_guadeloupe_martinique_reunion": {"1_part": 15004, "2_parts": 21973, "3_parts": 28745},
+      "tableau_officiel_2026_guyane_mayotte": {"1_part": 15686, "2_parts": 23389, "3_parts": 30161},
+      "particularite": "Cette condition de ressources ne s'applique pas aux titulaires de l'ASPA ou de l'ASI (exoneration sans condition de RFR distincte).",
+      "application": "Exoneration et degrevement accordes de plein droit / d'office. En cas d'erreur, demande aupres du centre des Finances publiques (coordonnees sur l'avis, cadre 'Vos demarches').",
+      "a_verifier_sur": "impots.gouv.fr - rubrique exonerations taxe fonciere (revenu chaque annee, verifier la table a jour avant toute annonce au client)"
+    },
+    {
+      "id": "aspa_asi_aah",
+      "nom": "Exoneration pour beneficiaires de l'ASPA, l'ASI ou l'AAH",
+      "conditions": [
+        "ASPA (allocation de solidarite aux personnes agees) ou ASI (allocation supplementaire d'invalidite) : exoneration sans condition d'age ni de RFR distincte.",
+        "AAH (allocation aux adultes handicapes) : exoneration sous les memes conditions de RFR que le dispositif age (voir tableau_officiel_2026_metropole)."
+      ],
+      "source_exclusive": "impots.gouv.fr - page 'Exonerations et degrevements' (https://www.impots.gouv.fr/particulier/exonerations-et-degrevements).",
       "a_verifier_sur": "impots.gouv.fr - rubrique exonerations taxe fonciere"
     },
     {
+      "id": "plafonnement_revenu_residence_principale",
+      "nom": "Plafonnement de la taxe fonciere sur la residence principale en fonction du revenu (article 1391 B ter / 1417-II du CGI)",
+      "conditions": [
+        "Bien concerne = habitation principale du redevable",
+        "Non assujetti a l'IFI au titre de l'annee precedente",
+        "RFR (avec corrections specifiques) sous le plafond de l'article 1417-II",
+        "Degrevement = part de la cotisation de taxe fonciere (hors TEOM) qui depasse 50% des revenus retenus"
+      ],
+      "source_exclusive": "impots.gouv.fr - page officielle DGFIP 'Ma taxe fonciere est tres elevee. Peut-elle etre plafonnee ?' (https://www.impots.gouv.fr/particulier/questions/ma-taxe-fonciere-est-tres-elevee-peut-elle-etre-plafonnee) et formulaire officiel 2041-DPTF-SD / Cerfa 14770 (https://www.impots.gouv.fr/formulaire/2041-dptf-sd/taxe-fonciere-sur-les-proprietes-baties-plafonnement-tf).",
+      "tableau_officiel_cerfa_14770_metropole": {
+        "1_part": 29815,
+        "1.5_part": 36781,
+        "2_parts": 42265,
+        "2.5_parts": 47749,
+        "3_parts": 53233,
+        "majoration_par_demi_part_au_dela_de_3_parts": 5484,
+        "note_ecart_1_a_1.5_part": "La progression de 1 part a 1,5 part (+6966 euros) est superieure a celle des demi-parts suivantes (+5484 euros chacune) : c'est la valeur exacte publiee par la DGFIP dans le formulaire, a ne pas lisser."
+      },
+      "important": "Ce degrevement n'est jamais automatique : demande sur reclamation avec le formulaire 2041-DPTF-SD / Cerfa 14770, au plus tard le 31 decembre de l'annee suivant la mise en recouvrement de l'imposition. C'est un dispositif particulierement adapte a ce projet, puisque beaucoup de foyers eligibles ne le demandent jamais faute de le connaitre.",
+      "avertissement_ecart_source": "Le formulaire 2041-DPTF-SD disponible au moment de la recherche est la version relative a la taxe fonciere 2025 (RFR 2024). Le formulaire 2026 (RFR 2025) n'etait pas encore publie sur impots.gouv.fr au moment de la verification : les seuils ci-dessus doivent etre reconfirmes sur le formulaire de l'annee en cours avant toute annonce chiffree a un client, les plafonds etant revalorises chaque annee.",
+      "a_verifier_sur": "impots.gouv.fr - formulaire 2041-DPTF-SD (version la plus recente)"
+    },
+    {
       "id": "travaux_energetiques",
-      "nom": "Exoneration temporaire pour travaux d'economie d'energie",
+      "nom": "Exoneration temporaire pour travaux d'economie d'energie (article 1383-0 B du CGI)",
       "conditions": ["travaux eligibles realises", "demande deposee dans les delais aupres du centre des impots fonciers"],
+      "source_exclusive": "impots.gouv.fr - a reconfirmer sur la fiche officielle dediee (recherche 'travaux economie energie taxe fonciere' sur impots.gouv.fr).",
       "a_verifier_sur": "impots.gouv.fr - rubrique exonerations taxe fonciere"
+    },
+    {
+      "id": "construction_neuve_2_ans",
+      "nom": "Exoneration de 2 ans pour constructions nouvelles, reconstructions et additions de construction (article 1383 du CGI)",
+      "conditions": [
+        "construction, reconstruction ou extension (veranda, garage amenage, etage supplementaire, etc.) achevee depuis moins de 2 ans",
+        "declaration par le formulaire H1 (n. 6650) deposee dans les 90 jours suivant l'achevement (article 1406 du CGI) - condition stricte, sans laquelle le benefice peut etre perdu",
+        "exoneration totale pour l'habitation, sauf deliberation communale reduisant ou supprimant l'avantage"
+      ],
+      "source_exclusive": "bofip.impots.gouv.fr - BOI-IF-TFB-10-60-20 'Exoneration de droit commun de deux ans' (https://bofip.impots.gouv.fr/bofip/1881-PGP.html/identifiant=BOI-IF-TFB-10-60-20211220).",
+      "cas_d_usage_type": "Client ayant construit, reconstruit ou agrandi (extension, veranda) recemment : verifier si l'exoneration des 2 premieres annees a bien ete appliquee sur les avis correspondants.",
+      "important": "Certaines communes peuvent limiter cette exoneration par deliberation (a 40%, 50%, 60%, 70%, 80% ou 90% au lieu de 100%) : verifier au cas par cas aupres du centre des impots fonciers ou de la mairie.",
+      "a_verifier_sur": "impots.gouv.fr / bofip.impots.gouv.fr - rubrique exonerations taxe fonciere"
     },
     {
       "id": "exoneration_communale",
       "nom": "Exonerations locales votees par certaines communes",
       "conditions": ["variable selon la commune du bien"],
-      "a_verifier_sur": "service urbanisme / impots fonciers de la commune concernee"
+      "a_verifier_sur": "service urbanisme / impots fonciers de la commune concernee (coordonnees sur l'avis de taxe fonciere)"
     }
   ],
 
